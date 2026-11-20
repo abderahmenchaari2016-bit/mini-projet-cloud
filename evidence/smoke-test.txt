@@ -1,0 +1,7 @@
+OK health catalog: ok
+OK health orders: ok
+OK health notifications: ok
+OK catalog: 3 product(s), first_id=1
+OK order #5: 2 item(s), total=17.000 TND
+OK inter-service communication: notification #5
+API results saved to evidence\demo-results.json

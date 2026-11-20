@@ -1,0 +1,75 @@
+{
+  "health": {
+    "catalog": {
+      "service": "catalog",
+      "status": "ok"
+    },
+    "orders": {
+      "service": "orders",
+      "status": "ok"
+    },
+    "notifications": {
+      "service": "notifications",
+      "status": "ok"
+    }
+  },
+  "catalog": [
+    {
+      "category": "Savons",
+      "created_at": "2026-11-20 14:47:20",
+      "description": "Savon naturel fabriqué en Tunisie.",
+      "id": 1,
+      "name": "Savon artisanal à l'huile d'olive",
+      "price_tnd": "8.500"
+    },
+    {
+      "category": "Huiles essentielles",
+      "created_at": "2026-11-20 14:47:20",
+      "description": "Huile essentielle pour les soins et le bien-être.",
+      "id": 2,
+      "name": "Huile essentielle de romarin",
+      "price_tnd": "18.000"
+    },
+    {
+      "category": "Soins naturels",
+      "created_at": "2026-11-20 14:47:20",
+      "description": "Huile végétale artisanale pour le soin de la peau.",
+      "id": 3,
+      "name": "Huile de pépins de figue de barbarie",
+      "price_tnd": "32.000"
+    }
+  ],
+  "order": {
+    "message": "La commande est enregistrée. La notification est simulée.",
+    "notification_status": "recorded",
+    "order": {
+      "created_at": "2026-11-20 16:08:37",
+      "customer_email": "ci-demo@example.test",
+      "customer_name": "CI Demo",
+      "id": 5,
+      "product_id": 1,
+      "product_name": "Savon artisanal à l'huile d'olive",
+      "quantity": 2,
+      "status": "created",
+      "total_tnd": "17.000",
+      "unit_price_tnd": "8.500"
+    }
+  },
+  "notifications": [
+    {
+      "created_at": "2026-11-20 16:08:37",
+      "customer_email": "ci-demo@example.test",
+      "delivery_status": "simulated",
+      "event_type": "order_created",
+      "id": 5,
+      "order_id": 5,
+      "payload": {
+        "customer_name": "CI Demo",
+        "product_id": 1,
+        "product_name": "Savon artisanal à l'huile d'olive",
+        "quantity": 2,
+        "total_tnd": "17.000"
+      }
+    }
+  ]
+}

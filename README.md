@@ -2,6 +2,16 @@
 
 Ce dépôt conserve une petite API Flask autonome pour la partie 3 du sujet et ajoute un prototype microservices pour la partie 4. Le prototype utilise trois services REST indépendants : catalogue, commandes et notifications.
 
+## Livrables du mini-projet
+
+- Rapport de recommandation stratégique et technique : [PDF](output/pdf/rapport-recommandation-cloud.pdf), source de travail [Markdown](docs/rapport_cloud.md).
+- Schéma de l'architecture réellement déployée : [SVG](docs/architecture-prototype.svg).
+- Démonstration de bout en bout : `python scripts/smoke_test.py`.
+- Déroulé de soutenance de six minutes : [script](docs/demo-script.md).
+- CI GitHub Actions : construit les images et teste le parcours catalogue, commande et notification sur chaque push et pull request.
+
+Les preuves en texte se trouvent sous `evidence/`. Les captures de Docker Desktop et du terminal doivent être prises sur le poste qui exécute Docker Desktop; elles ne sont pas remplacées par des images synthétiques.
+
 ## Architecture actuelle
 
 | Service | Port local | Responsabilité | Persistance |
@@ -48,6 +58,12 @@ Dans un terminal Ubuntu/WSL ouvert à la racine du projet :
     docker compose ps
 
 Les services sont accessibles sur http://localhost:8001, http://localhost:8002 et http://localhost:8003.
+
+Vérifier le parcours complet (santé, catalogue, commande, notification) :
+
+    python scripts/smoke_test.py
+
+Le workflow `.github/workflows/ci.yml` lance le même parcours avec Docker Compose sur GitHub Actions.
 
 Pour suivre les journaux :
 

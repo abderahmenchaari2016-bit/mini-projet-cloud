@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img" aria-labelledby="title desc">
+  <title id="title">Architecture du prototype microservices</title>
+  <desc id="desc">Un client REST accède au catalogue, aux commandes et aux notifications. Le service commandes appelle le catalogue puis les notifications. Chaque service utilise son propre volume SQLite.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#2878c8"/></marker>
+    <style>
+      text { font-family: Arial, sans-serif; fill: #15243a; }
+      .title { font-size: 30px; font-weight: 700; }
+      .sub { font-size: 16px; fill: #486078; }
+      .box { fill: #ffffff; stroke: #87a6c7; stroke-width: 2; rx: 16; }
+      .service { fill: #eaf4ff; stroke: #2878c8; }
+      .volume { fill: #f3f6fa; stroke: #8294a8; stroke-dasharray: 6 4; }
+      .label { font-size: 19px; font-weight: 700; }
+      .detail { font-size: 14px; fill: #486078; }
+      .arrow { fill: none; stroke: #2878c8; stroke-width: 3; marker-end: url(#arrow); }
+      .route { fill: none; stroke: #728aa2; stroke-width: 2; }
+      .network { fill: #f7fbff; stroke: #b4c9dc; stroke-width: 2; stroke-dasharray: 10 7; rx: 24; }
+      .small { font-size: 13px; fill: #52697f; }
+    </style>
+  </defs>
+  <rect width="1200" height="690" fill="#f8fafc"/>
+  <text x="50" y="58" class="title">Prototype Cloud - boutique artisanale</text>
+  <text x="50" y="88" class="sub">Trois API REST Docker Compose, réseau privé et persistance séparée par service</text>
+  <rect x="500" y="94" width="200" height="28" class="box"/>
+  <text x="600" y="113" class="detail" text-anchor="middle">Client REST / navigateur</text>
+  <rect x="42" y="128" width="1116" height="510" class="network"/>
+  <text x="70" y="162" class="label">Réseau Docker : cloud-network</text>
+  <path d="M600 122 V205 M180 205 H1020" class="route"/>
+  <path d="M180 205 V282 M610 205 V237" class="arrow"/>
+  <path d="M1020 205 V282" class="arrow"/>
+  <text x="812" y="197" class="small" text-anchor="middle">Requêtes REST vers localhost</text>
+
+  <rect x="75" y="290" width="210" height="120" class="box service"/>
+  <text x="180" y="331" class="label" text-anchor="middle">Catalogue</text>
+  <text x="180" y="360" class="detail" text-anchor="middle">REST :8001</text>
+  <text x="180" y="383" class="detail" text-anchor="middle">produits, recherche</text>
+
+  <rect x="495" y="245" width="230" height="150" class="box service"/>
+  <text x="610" y="291" class="label" text-anchor="middle">Commandes</text>
+  <text x="610" y="320" class="detail" text-anchor="middle">REST :8002</text>
+  <text x="610" y="347" class="detail" text-anchor="middle">vérifie le produit</text>
+  <text x="610" y="370" class="detail" text-anchor="middle">calcule et enregistre</text>
+
+  <rect x="915" y="290" width="210" height="120" class="box service"/>
+  <text x="1020" y="331" class="label" text-anchor="middle">Notifications</text>
+  <text x="1020" y="360" class="detail" text-anchor="middle">REST :8003</text>
+  <text x="1020" y="383" class="detail" text-anchor="middle">événement simulé</text>
+
+  <path d="M495 294 C420 245, 355 245, 285 294" class="arrow"/>
+  <text x="390" y="235" class="small" text-anchor="middle">GET /products/{id}</text>
+  <path d="M725 345 C795 400, 845 400, 915 345" class="arrow"/>
+  <text x="820" y="430" class="small" text-anchor="middle">POST /notify</text>
+
+  <rect x="83" y="485" width="195" height="88" class="box volume"/>
+  <text x="180" y="520" class="label" text-anchor="middle">catalog_data</text>
+  <text x="180" y="546" class="detail" text-anchor="middle">SQLite persistant</text>
+  <path d="M180 410 L180 485" class="arrow"/>
+
+  <rect x="513" y="485" width="195" height="88" class="box volume"/>
+  <text x="610" y="520" class="label" text-anchor="middle">orders_data</text>
+  <text x="610" y="546" class="detail" text-anchor="middle">SQLite persistant</text>
+  <path d="M610 395 L610 485" class="arrow"/>
+
+  <rect x="923" y="485" width="195" height="88" class="box volume"/>
+  <text x="1020" y="520" class="label" text-anchor="middle">notifications_data</text>
+  <text x="1020" y="546" class="detail" text-anchor="middle">SQLite persistant</text>
+  <path d="M1020 410 L1020 485" class="arrow"/>
+
+  <rect x="461" y="595" width="298" height="32" rx="16" fill="#e7f5ed" stroke="#8db99a"/>
+  <text x="610" y="617" class="small" text-anchor="middle">Client REST : localhost:8001 / 8002 / 8003</text>
+</svg>

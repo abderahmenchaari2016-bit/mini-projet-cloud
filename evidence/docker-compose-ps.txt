@@ -1,0 +1,4 @@
+NAME                                IMAGE                             COMMAND                  SERVICE         CREATED          STATUS                    PORTS
+mini-projet-cloud-catalog-1         mini-projet-cloud-catalog         "gunicorn --workers …"   catalog         49 seconds ago   Up 46 seconds (healthy)   0.0.0.0:8001->8001/tcp, [::]:8001->8001/tcp
+mini-projet-cloud-notifications-1   mini-projet-cloud-notifications   "gunicorn --workers …"   notifications   49 seconds ago   Up 46 seconds (healthy)   0.0.0.0:8003->8003/tcp, [::]:8003->8003/tcp
+mini-projet-cloud-orders-1          mini-projet-cloud-orders          "gunicorn --workers …"   orders          48 seconds ago   Up 40 seconds (healthy)   0.0.0.0:8002->8002/tcp, [::]:8002->8002/tcp
