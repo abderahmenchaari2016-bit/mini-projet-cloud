@@ -1,0 +1,82 @@
+services:
+  catalog:
+    build:
+      context: ./services/catalog
+    environment:
+      DATABASE_PATH: /data/catalog.sqlite
+    ports:
+      - "8001:8001"
+    volumes:
+      - catalog_data:/data
+    networks:
+      - cloud-network
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen("http://127.0.0.1:8001/health", timeout=2)
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+  notifications:
+    build:
+      context: ./services/notifications
+    environment:
+      DATABASE_PATH: /data/notifications.sqlite
+    ports:
+      - "8003:8003"
+    volumes:
+      - notifications_data:/data
+    networks:
+      - cloud-network
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen("http://127.0.0.1:8003/health", timeout=2)
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+  orders:
+    build:
+      context: ./services/orders
+    environment:
+      DATABASE_PATH: /data/orders.sqlite
+      CATALOG_SERVICE_URL: http://catalog:8001
+      NOTIFICATIONS_SERVICE_URL: http://notifications:8003
+    ports:
+      - "8002:8002"
+    volumes:
+      - orders_data:/data
+    networks:
+      - cloud-network
+    depends_on:
+      catalog:
+        condition: service_healthy
+      notifications:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen("http://127.0.0.1:8002/health", timeout=2)
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+networks:
+  cloud-network:
+    driver: bridge
+
+volumes:
+  catalog_data:
+  orders_data:
+  notifications_data:
